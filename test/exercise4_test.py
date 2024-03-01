@@ -1,4 +1,4 @@
-from Exercise4 import *
+from exercise4 import *
 
 
 def test_characters():

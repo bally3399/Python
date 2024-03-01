@@ -1,5 +1,5 @@
 from unittest import TestCase
-from Gun import Gun
+from gun import Gun
 
 
 class TestGunFunction(TestCase):
@@ -39,5 +39,5 @@ class TestGunFunction(TestCase):
         self.Gun.load_bullet()
         self.assertFalse(self.Gun.chamber_is_empty())
 
-
-
+    def test_enter_password(self):
+        self.assertTrue(self.Gun.pin('1234'))
