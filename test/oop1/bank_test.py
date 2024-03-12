@@ -60,11 +60,12 @@ class BankTest(unittest.TestCase):
         self.bank.remove_account(account.get_number(), "1234")
         self.assertEqual(0, self.bank.get_accounts())
 
-    # def test_deposit_1k_transfer_500_my_balance_remains_500(self):
-    #     account1 = self.bank.register_customer("firstName", "LastName", "1234")
-    #     account2 = self.bank.register_customer("first_name", "Last_name", "5678")
-    #     self.bank.deposit(account1.get_number(), 1000)
-    #
-    #     self.bank.transfer(account1.get_number(), account2.get_number(), 500, "1234")
-    #     self.assertEqual(500, account1.get_balance())
-    #     self.assertEqual(500, account2.get_balance())
+    def test_deposit_1k_transfer_500_my_balance_remains_500(self):
+        account1 = self.bank.register_customer("firstName", "LastName", "1234")
+        account2 = self.bank.register_customer("first_name", "Last_name", "5678")
+        self.assertEqual(2, self.bank.get_accounts())
+        self.bank.deposit(account1.get_number(), 1000)
+
+        self.bank.transfer(account1.get_number(), account2.get_number(), 500, "1234")
+        self.assertEqual(500, account1.get_balance())
+        self.assertEqual(500, account2.get_balance())

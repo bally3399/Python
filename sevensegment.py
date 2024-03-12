@@ -1,29 +1,24 @@
 class SevenSegment:
     def __init__(self):
-        self.segments = [''] * 7
+        self.segments = [''] * 8
         self.is_on = True
 
-
-    def is_on(self):
-        return self.is_on
-
-    def turn_on(self):
-        for idx in (self.segments, -1):
-            if idx == 1:
-                self.is_on = True
-
     def splitting_into_array(self, binary):
-        if len(binary) != 7 or not all(bit in '01' for bit in binary):
+        if len(binary) != 8 or not all(bit in '01' for bit in binary):
             raise ValueError("Invalid binary input")
         for index in range(len(self.segments)):
             if binary[index] != '0' and binary[index] != '1':
                 raise ValueError("Invalid binary")
             self.segments[index] = binary[index]
-        self.display_seven()
+        if binary[-1] == "1":
+            self.display_seven()
+        elif binary[-1] != "0":
+            raise ValueError("binary should end with 1")
 
     def display_seven(self):
-        if len(self.segments) != 7:
-            raise ValueError("Input array length must be exactly 7")
+        if len(self.segments) != 8:
+            raise ValueError("Input array length must be exactly 8")
+        print()
         self.display_1(self.segments[0])
         self.display_2(self.segments[5], self.segments[1])
         self.display_1(self.segments[6])
@@ -37,7 +32,7 @@ class SevenSegment:
         if segment == "1":
             print("* * * * *")
         else:
-            print("     ")
+            print("    ")
 
     @staticmethod
     def display_2(segment, segment2):

@@ -2,13 +2,14 @@ from oop1.bank import Bank
 
 
 class BankApp:
+
     def __init__(self):
         self.bank = Bank("firstBank")
 
     def display(self):
         print("******************************************")
         print("Bank App")
-        print("1.Create customer\n2.Close account\n3.Deposit \n4.Transfer \n5.Withdraw\n6.Check balance "
+        print("1.Create account\n2.Close account\n3.Deposit\n4.Transfer\n5.Withdraw\n6.Check balance "
               "\n7.Exit App")
         print("*******************************************")
         choice = input("Enter your choice: ")
@@ -36,7 +37,7 @@ class BankApp:
         last_name = input("Enter last name: ")
         pin = input("Enter pin: ")
         account = self.bank.register_customer(first_name, last_name, pin)
-        print("Customer register successfully!")
+        print("account register successfully!")
         print("account Number: ", account.get_number())
         self.display()
 
@@ -95,6 +96,7 @@ class BankApp:
             print("account closed successfully!")
         except Exception as e:
             print(e)
+        finally:
             self.display()
 
     @staticmethod

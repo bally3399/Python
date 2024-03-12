@@ -2,14 +2,6 @@ from oop1.exceptions import AccountNotFoundException, InvalidPinException, Insuf
 from oop1.account import Account
 
 
-def validate_pin(from_account, pin):
-    if not from_account.pin == pin:
-        raise InvalidPinException("Incorrect PIN")
-
-
-def validate_amount_limit(amount, from_account):
-    if from_account.balance < amount:
-        raise InsufficientFundsException("Insufficient funds for transfer")
 
 
 class Bank:
@@ -33,7 +25,7 @@ class Bank:
         for account in self.__accounts:
             if account.number == account_number:
                 return account
-            raise AccountNotFoundException("account not found")
+        raise AccountNotFoundException("account not found")
 
     def get_accounts(self):
         return len(self.__accounts)
@@ -57,14 +49,16 @@ class Bank:
         else:
             raise InvalidPinException("Incorrect PIN")
 
-    def transfer(self, from_account_number, to_account_number, amount, pin):
+    def transfer(self, amount, from_account_number, to_account_number, pin):
         from_account = self.find_account(from_account_number)
         to_account = self.find_account(to_account_number)
-        #validate_pin(from_account, pin)
-        #validate_amount_limit(amount, from_account)
 
         from_account.withdraw(amount, pin)
         to_account.deposit(amount)
-
-
-
+    # def validate_pin(from_account, pin):
+    #     if not from_account.pin == pin:
+    #         raise InvalidPinException("Incorrect PIN")
+    #
+    # def validate_amount_limit(amount, from_account):
+    #     if from_account.balance < amount:
+    #         raise InsufficientFundsException("Insufficient funds for transfer")
